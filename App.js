@@ -3,8 +3,12 @@ import { StyleSheet, TouchableOpacity, View, Text, ScrollView, Image } from 'rea
 import { Button, TextInput } from '@react-native-material/core';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { GestureHandlerScrollView } from 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+const HomePage = ({ navigation }) => {
   return (
     <><View style={styles.container}>
       <TextInput
@@ -13,12 +17,10 @@ export default function App() {
       <TouchableOpacity style={styles.button}>
         <Icon name='search' size={45} color={"black"} />
       </TouchableOpacity>
-    </View>
-    <Text style={styles.textTittle}>Página Inicial</Text>
-      <ScrollView>
+    </View><Text style={styles.textTittle}>Página Inicial</Text><ScrollView>
         <View style={styles.containerScrollView}>
           <View style={styles.container}>
-            <Image source={require('./assets/chapeu-de-graduacao.png')}  style={styles.image}/>
+            <Image source={require('./assets/chapeu-de-graduacao.png')} style={styles.image} />
             <Text style={styles.textTittleScroll}>Melhores Matches</Text>
           </View>
           <ScrollView style={styles.scrollViewStyles} nestedScrollEnabled>
@@ -58,64 +60,72 @@ export default function App() {
         </View>
 
         <View style={styles.container}>
-          <Image source={require('./assets/chapeu-de-graduacao.png')}  style={styles.imageCategories}/>
+          <Image source={require('./assets/chapeu-de-graduacao.png')} style={styles.imageCategories} />
           <Text style={styles.textTittle}>Categorias</Text>
         </View>
 
         <View style={styles.containerFlexBox}>
           <View>
             <TouchableOpacity style={styles.blocksCategoriesButton}>
-              <Image source={require('./assets/no-mundo-todo.png')}  style={styles.imageIconsCategories}/>
+              <Image source={require('./assets/no-mundo-todo.png')} style={styles.imageIconsCategories} />
             </TouchableOpacity>
           </View>
           <View>
             <TouchableOpacity style={styles.blocksCategoriesButton}>
-              <Image source={require('./assets/computador-pessoal.png')}  style={styles.imageIconsCategories}/>
+              <Image source={require('./assets/computador-pessoal.png')} style={styles.imageIconsCategories} />
             </TouchableOpacity>
           </View>
           <View>
             <TouchableOpacity style={styles.blocksCategoriesButton}>
-              <Image source={require('./assets/grafico-de-barras.png')}  style={styles.imageIconsCategories}/>
+              <Image source={require('./assets/grafico-de-barras.png')} style={styles.imageIconsCategories} />
             </TouchableOpacity>
           </View>
           <View>
             <TouchableOpacity style={styles.blocksCategoriesButton}>
-              <Image source={require('./assets/no-mundo-todo.png')}  style={styles.imageIconsCategories}/>
+              <Image source={require('./assets/no-mundo-todo.png')} style={styles.imageIconsCategories} />
             </TouchableOpacity>
           </View>
           <View>
             <TouchableOpacity style={styles.blocksCategoriesButton}>
-              <Image source={require('./assets/computador-pessoal.png')}  style={styles.imageIconsCategories}/>
+              <Image source={require('./assets/computador-pessoal.png')} style={styles.imageIconsCategories} />
             </TouchableOpacity>
           </View>
           <View>
             <TouchableOpacity style={styles.blocksCategoriesButton}>
-              <Image source={require('./assets/grafico-de-barras.png')}  style={styles.imageIconsCategories}/>
+              <Image source={require('./assets/grafico-de-barras.png')} style={styles.imageIconsCategories} />
             </TouchableOpacity>
           </View>
           <View>
             <TouchableOpacity style={styles.blocksCategoriesButton}>
-              <Image source={require('./assets/no-mundo-todo.png')}  style={styles.imageIconsCategories}/>
+              <Image source={require('./assets/no-mundo-todo.png')} style={styles.imageIconsCategories} />
             </TouchableOpacity>
           </View>
           <View>
             <TouchableOpacity style={styles.blocksCategoriesButton}>
-              <Image source={require('./assets/computador-pessoal.png')}  style={styles.imageIconsCategories}/>
+              <Image source={require('./assets/computador-pessoal.png')} style={styles.imageIconsCategories} />
             </TouchableOpacity>
           </View>
           <View>
             <TouchableOpacity style={styles.blocksCategoriesButton}>
-              <Image source={require('./assets/grafico-de-barras.png')}  style={styles.imageIconsCategories}/>
+              <Image source={require('./assets/grafico-de-barras.png')} style={styles.imageIconsCategories} />
             </TouchableOpacity>
           </View>
         </View>
-      </ScrollView>
-      <TouchableOpacity style={styles.buttonRegister}>
-          <Image source={require('./assets/mais.png')}  style={styles.imagePlusButton}/>
-        </TouchableOpacity>
-    </>
-    
+      </ScrollView><TouchableOpacity style={styles.buttonRegister}>
+        <Image source={require('./assets/mais.png')} style={styles.imagePlusButton} />
+      </TouchableOpacity></>
+
   );
+}
+
+export default function App() {
+  return(
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="HomePage">
+        <Stack.Screen name="HomePage" component={HomePage}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -228,7 +238,7 @@ const styles = StyleSheet.create({
   },
   buttonRegister: {
     position: 'absolute',
-    top: 720,
+    top: 625,
     left: 300,
     width: 80,
     height: 80,
