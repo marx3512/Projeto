@@ -1,14 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, TouchableOpacity, View, Text, ScrollView, Image } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Text, ScrollView, Image, FlatList } from 'react-native';
 import { Button, TextInput } from '@react-native-material/core';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { GestureHandlerScrollView } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useState } from 'react';
 
 const Stack = createNativeStackNavigator();
 
 const HomePage = ({ navigation }) => {
+  const [menuVisivel, setMenuVisivel] = useState(false);
+
+    const ativarMenu = () => {
+      setMenuVisivel(!menuVisivel);
+    }
+
+    const menuItens = [
+      { id: '1', label: 'Criar conta de usuário'},
+      { id: '2', label: 'Cadastrar proposta de ICT'},
+    ]
+
   return (
     <><View style={styles.container}>
       <TextInput
@@ -111,9 +123,25 @@ const HomePage = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </View>
-      </ScrollView><TouchableOpacity style={styles.buttonRegister}>
+      </ScrollView><TouchableOpacity onPress={ativarMenu} style={styles.buttonRegister}>
         <Image source={require('./assets/mais.png')} style={styles.imagePlusButton} />
-      </TouchableOpacity></>
+      </TouchableOpacity>
+      
+      {menuVisivel && (
+        <View style={styles.menu}>
+        <FlatList
+          data={menuItens}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => console.log(`Clicou em ${item.label}`)}>
+              <Text style={styles.textMenu}>{item.label}</Text>
+            </TouchableOpacity>
+          )}
+        />
+      </View>
+      )}
+
+      </>
 
   );
 }
@@ -249,5 +277,23 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 }, 
     shadowOpacity: 0.5, 
     shadowRadius: 4
+  },
+  menu: {
+    position: 'absolute',
+    top: 520,
+    right: 20,
+    width: 220,
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: 'lightgray',
+    borderRadius: 5,
+    padding: 10,
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    elevation: 5,
+  },
+  textMenu: {
+    fontSize: 18
   }
 })
