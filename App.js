@@ -1,3 +1,5 @@
+import ProjectPage from './Project';
+
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, TouchableOpacity, View, Text, ScrollView, Image, FlatList } from 'react-native';
 import { Button, TextInput } from '@react-native-material/core';
@@ -40,7 +42,10 @@ const HomePage = ({ navigation }) => {
               <Text style={styles.blocksProjectsTittle}>Projeto 1</Text>
               <Text style={styles.blocksProjectsSubTittle}>ICT responsavel</Text>
               <Text style={styles.blocksProjectsTags}>keywords, blah blah</Text>
-              <TouchableOpacity style={styles.blocksProjectsButton}>
+              <TouchableOpacity 
+                style={styles.blocksProjectsButton}
+                onPress={() => navigation.navigate('ProjectPage')}
+              >
                 <Icon name='keyboard-arrow-right' size={45} color={"white"} />
               </TouchableOpacity>
             </View>
@@ -151,6 +156,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="HomePage">
         <Stack.Screen name="HomePage" component={HomePage}/>
+        <Stack.Screen name="ProjectPage" component={ProjectPage}/>
       </Stack.Navigator>
     </NavigationContainer>
   )
@@ -173,7 +179,8 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginLeft: 20,
     alignItems: 'center',
-    width: '75%'
+    width: '75%',
+    height: '5'
   },
   button: {
     marginTop: 45,
