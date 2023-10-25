@@ -1,8 +1,12 @@
 import ProjectPage from './Project';
+import CreateAccountPage from './CreateAccount';
+import RegisterProject from './RegisterProject';
+import LoginPage from './LoginPage';
+import PerfilPage from './PerfilPage';
 
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, TouchableOpacity, View, Text, ScrollView, Image, FlatList } from 'react-native';
-import { Button, TextInput } from '@react-native-material/core';
+import { StyleSheet, TouchableOpacity, View, Text, ScrollView, Image, FlatList, TextInput } from 'react-native';
+import { Button,  } from '@react-native-material/core';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { GestureHandlerScrollView } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
@@ -12,26 +16,43 @@ import { useState } from 'react';
 const Stack = createNativeStackNavigator();
 
 const HomePage = ({ navigation }) => {
-  const [menuVisivel, setMenuVisivel] = useState(false);
+  const [menuVisivelCreateProject, setMenuVisivelCreateProject] = useState(false);
+  const [menuVisivelPerfil, setMenuVisivelPerfil] = useState(false);
 
-    const ativarMenu = () => {
-      setMenuVisivel(!menuVisivel);
+  const [logado, setLogado] = useState(true);
+
+    const ativarMenuProject = () => {
+      setMenuVisivelCreateProject(!menuVisivelCreateProject);
+    }
+
+    const ativarMenuPerfil = () => {
+      setMenuVisivelPerfil(!menuVisivelPerfil);
     }
 
     const menuItens = [
-      { id: '1', label: 'Criar conta de usuário'},
       { id: '2', label: 'Cadastrar proposta de ICT'},
+    ]
+    
+    const menuItenPerfilsOff = [
+      { id: '1', label: "Logar"},
+      { id: '2', label: "Criar conta de usuário"}
+    ]
+
+    const menuItensPerilOn = [
+      {id: '1', label: "Perfil"},
+      {id: '2', label: "Logout"}
     ]
 
   return (
     <><View style={styles.container}>
-      <TextInput
-        variant='outlined'
-        style={styles.inputText} />
+        <TextInput
+            style={styles.inputText}
+        ></TextInput>
       <TouchableOpacity style={styles.button}>
         <Icon name='search' size={45} color={"black"} />
       </TouchableOpacity>
-    </View><Text style={styles.textTittle}>Página Inicial</Text><ScrollView>
+    </View>
+    <ScrollView>
         <View style={styles.containerScrollView}>
           <View style={styles.container}>
             <Image source={require('./assets/chapeu-de-graduacao.png')} style={styles.image} />
@@ -50,7 +71,7 @@ const HomePage = ({ navigation }) => {
               </TouchableOpacity>
             </View>
             <View style={styles.blocksProjects}>
-              <Text style={styles.blocksProjectsTittle}>Projeto 1</Text>
+              <Text style={styles.blocksProjectsTittle}>Projeto 2</Text>
               <Text style={styles.blocksProjectsSubTittle}>ICT responsavel</Text>
               <Text style={styles.blocksProjectsTags}>keywords, blah blah</Text>
               <TouchableOpacity style={styles.blocksProjectsButton}>
@@ -58,7 +79,7 @@ const HomePage = ({ navigation }) => {
               </TouchableOpacity>
             </View>
             <View style={styles.blocksProjects}>
-              <Text style={styles.blocksProjectsTittle}>Projeto 1</Text>
+              <Text style={styles.blocksProjectsTittle}>Projeto 3</Text>
               <Text style={styles.blocksProjectsSubTittle}>ICT responsavel</Text>
               <Text style={styles.blocksProjectsTags}>keywords, blah blah</Text>
               <TouchableOpacity style={styles.blocksProjectsButton}>
@@ -66,7 +87,7 @@ const HomePage = ({ navigation }) => {
               </TouchableOpacity>
             </View>
             <View style={styles.blocksProjects}>
-              <Text style={styles.blocksProjectsTittle}>Projeto 1</Text>
+              <Text style={styles.blocksProjectsTittle}>Projeto 4</Text>
               <Text style={styles.blocksProjectsSubTittle}>ICT responsavel</Text>
               <Text style={styles.blocksProjectsTags}>keywords, blah blah</Text>
               <TouchableOpacity style={styles.blocksProjectsButton}>
@@ -128,17 +149,68 @@ const HomePage = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </View>
-      </ScrollView><TouchableOpacity onPress={ativarMenu} style={styles.buttonRegister}>
-        <Image source={require('./assets/mais.png')} style={styles.imagePlusButton} />
+      </ScrollView>
+      {logado && (
+        <TouchableOpacity onPress={ativarMenuProject} style={styles.buttonRegister}>
+          <Image source={require('./assets/mais(1).png')} style={styles.imagePlusButton} />
+        </TouchableOpacity>
+      )}
+
+      <TouchableOpacity onPress={ativarMenuPerfil} style={styles.buttonPerfil}>
+        <Image source={require('./assets/perfil.png')} style={styles.imagePlusButton} />
       </TouchableOpacity>
       
-      {menuVisivel && (
-        <View style={styles.menu}>
+      {menuVisivelCreateProject && logado && (
+        <View style={styles.menuCreateProject}>
         <FlatList
           data={menuItens}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => console.log(`Clicou em ${item.label}`)}>
+            <TouchableOpacity onPress={() => {
+              navigation.navigate("RegisterProjectPage")
+            }}>
+              <Text style={styles.textMenu}>{item.label}</Text>
+            </TouchableOpacity>
+          )}
+        />
+        </View>
+      )}
+
+      {menuVisivelPerfil && logado == false && (
+        <View style={styles.menuOff}>
+        <FlatList
+          data={menuItenPerfilsOff}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => {
+              if(item.label == "Logar"){
+                navigation.navigate('LoginPage')
+              }
+              else{
+                navigation.navigate("CreateAccountPage")
+              }
+            }}>
+              <Text style={styles.textMenu}>{item.label}</Text>
+            </TouchableOpacity>
+          )}
+        />
+      </View>
+      )}
+
+      {menuVisivelPerfil && logado == true && (
+        <View style={styles.menuOff}>
+        <FlatList
+          data={menuItensPerilOn}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => {
+              if(item.label == "Perfil"){
+                navigation.navigate('PerfilPage')
+              }
+              else{
+                setLogado(false)
+              }
+            }}>
               <Text style={styles.textMenu}>{item.label}</Text>
             </TouchableOpacity>
           )}
@@ -157,6 +229,10 @@ export default function App() {
       <Stack.Navigator initialRouteName="HomePage">
         <Stack.Screen name="HomePage" component={HomePage}/>
         <Stack.Screen name="ProjectPage" component={ProjectPage}/>
+        <Stack.Screen name="CreateAccountPage" component={CreateAccountPage}/>
+        <Stack.Screen name="RegisterProjectPage" component={RegisterProject}/>
+        <Stack.Screen name="LoginPage" component={LoginPage}/>
+        <Stack.Screen name="PerfilPage" component={PerfilPage}/>
       </Stack.Navigator>
     </NavigationContainer>
   )
@@ -165,6 +241,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    height: 50,
   },
   containerFlexBox: {
     flex: 1,
@@ -173,36 +250,35 @@ const styles = StyleSheet.create({
     justifyContent: 'center', // Alinha os filhos verticalmente no centro
     alignItems: 'center', // Alinha os filhos horizontalmente no centro
   },
-  row: {
-  },
   inputText: {
-    marginTop: 40,
-    marginLeft: 20,
-    alignItems: 'center',
-    width: '75%',
-    height: '5'
+    height: 40,
+    width: 300,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    backgroundColor: "white",
+    borderRadius: 50
   },
   button: {
-    marginTop: 45,
+    marginTop: 12,
     marginLeft: 20,
     height: 55,
     alignItems: 'center',
   },
   textTittle: {
-    marginLeft: 20,
-    marginTop: 10,
-    fontSize: 30
+    marginLeft: 10,
+    marginTop: 8,
+    fontSize: 24
   },
   image: {
     width: 50,
     height: 50,
-    marginTop: 13,
+    marginTop: 5,
     marginLeft: 15
   },
   imageCategories: {
     width: 50,
     height: 50,
-    marginTop: 9,
     marginLeft: 15
   },
   imageIconsCategories: {
@@ -218,13 +294,13 @@ const styles = StyleSheet.create({
     marginLeft: 10
   },
   textTittleScroll: {
-    fontSize: 25,
+    fontSize: 24,
     marginLeft: 10,
-    marginTop: 18,
+    marginTop: 11,
     alignItems: 'center',
   },
   containerScrollView: {
-    borderRadius: 50,
+    marginTop: 10,
     backgroundColor: "#D2D7E0"
   },
   scrollViewStyles: {
@@ -271,13 +347,13 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginBottom: 10
   },
-  buttonRegister: {
+  buttonPerfil: {
     position: 'absolute',
     top: 625,
-    left: 300,
+    left: 25,
     width: 80,
     height: 80,
-    backgroundColor: "#545F71",
+    backgroundColor: "#D2D7E0",
     borderRadius: 50,
     elevation: 5, 
     shadowColor: 'black', 
@@ -285,10 +361,39 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5, 
     shadowRadius: 4
   },
-  menu: {
+  buttonRegister: {
     position: 'absolute',
-    top: 520,
+    top: 625,
+    left: 300,
+    width: 80,
+    height: 80,
+    backgroundColor: "#D2D7E0",
+    borderRadius: 50,
+    elevation: 5, 
+    shadowColor: 'black', 
+    shadowOffset: { width: 0, height: 2 }, 
+    shadowOpacity: 0.5, 
+    shadowRadius: 4
+  },
+  menuCreateProject: {
+    position: 'absolute',
+    top: 543,
     right: 20,
+    width: 220,
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: 'lightgray',
+    borderRadius: 5,
+    padding: 10,
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    elevation: 5,
+  },
+  menuOff: {
+    position: 'absolute',
+    top: 540,
+    left: 25,
     width: 220,
     backgroundColor: 'white',
     borderWidth: 1,

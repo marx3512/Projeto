@@ -5,6 +5,7 @@ import { StyleSheet, TouchableOpacity, View, Text, ScrollView, Image, FlatList }
 const ProjectPage = ({ navigation }) => {
     return (
         <>
+        <ScrollView>
             <View style={styles.containerTitleProjeto}>
                 <Text style={styles.titleProject}>Nome do projeto</Text>
             </View>
@@ -23,6 +24,7 @@ const ProjectPage = ({ navigation }) => {
                 <Text style={styles.subjectInfoProject}>asgfasgagasyigfoiasyftguiasyf</Text>
 
             </View>
+        </ScrollView>
         </>
     )
 }
@@ -39,7 +41,9 @@ const styles = StyleSheet.create({
     },
     containerInfoProject: {
         marginTop: 20,
-        alignItems: 'center'
+        alignItems: "center",
+        backgroundColor: "#D2D7E0",
+        borderRadius: 50
     },
     subjectInfoProject: {
         backgroundColor: "#545F71",
@@ -50,13 +54,13 @@ const styles = StyleSheet.create({
         paddingLeft: 30,
         paddingBottom: 5,
         paddingRight: 30,
-        marginBottom: 15
+        marginBottom: 15,
+        marginTop: 15
     },
     topicInfoProject: {
         fontSize: 18,
         alignSelf: "flex-start",
         marginLeft: 32,
-        marginBottom: 10,
     }
 })
 
