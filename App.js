@@ -3,6 +3,7 @@ import CreateAccountPage from './CreateAccount';
 import RegisterProject from './RegisterProject';
 import LoginPage from './LoginPage';
 import PerfilPage from './PerfilPage';
+import RegisterDemanda from './RegisterDemanda';
 
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, TouchableOpacity, View, Text, ScrollView, Image, FlatList, TextInput } from 'react-native';
@@ -18,6 +19,7 @@ const Stack = createNativeStackNavigator();
 const HomePage = ({ navigation }) => {
   const [menuVisivelCreateProject, setMenuVisivelCreateProject] = useState(false);
   const [menuVisivelPerfil, setMenuVisivelPerfil] = useState(false);
+  const [tipoConta, setTipoConta] = useState('Empresarial')
 
   const [logado, setLogado] = useState(true);
 
@@ -30,7 +32,11 @@ const HomePage = ({ navigation }) => {
     }
 
     const menuItens = [
-      { id: '2', label: 'Cadastrar proposta de ICT'},
+      { id: '2', label: 'Cadastrar demanda'},
+    ]
+
+    const menuItensEmpresarial = [
+      { id: '1', label: 'Cadastrar demanda'}
     ]
     
     const menuItenPerfilsOff = [
@@ -56,13 +62,13 @@ const HomePage = ({ navigation }) => {
         <View style={styles.containerScrollView}>
           <View style={styles.container}>
             <Image source={require('./assets/chapeu-de-graduacao.png')} style={styles.image} />
-            <Text style={styles.textTittleScroll}>Melhores Matches</Text>
+            <Text style={styles.textTittleScroll}>Candidatos</Text>
           </View>
           <ScrollView style={styles.scrollViewStyles} nestedScrollEnabled>
             <View style={styles.blocksProjects}>
               <Text style={styles.blocksProjectsTittle}>Projeto 1</Text>
               <Text style={styles.blocksProjectsSubTittle}>ICT responsavel</Text>
-              <Text style={styles.blocksProjectsTags}>keywords, blah blah</Text>
+              <Text style={styles.blocksProjectsTags}>keywords</Text>
               <TouchableOpacity 
                 style={styles.blocksProjectsButton}
                 onPress={() => navigation.navigate('ProjectPage')}
@@ -73,7 +79,7 @@ const HomePage = ({ navigation }) => {
             <View style={styles.blocksProjects}>
               <Text style={styles.blocksProjectsTittle}>Projeto 2</Text>
               <Text style={styles.blocksProjectsSubTittle}>ICT responsavel</Text>
-              <Text style={styles.blocksProjectsTags}>keywords, blah blah</Text>
+              <Text style={styles.blocksProjectsTags}>keywords</Text>
               <TouchableOpacity style={styles.blocksProjectsButton}>
                 <Icon name='keyboard-arrow-right' size={45} color={"white"} />
               </TouchableOpacity>
@@ -81,7 +87,7 @@ const HomePage = ({ navigation }) => {
             <View style={styles.blocksProjects}>
               <Text style={styles.blocksProjectsTittle}>Projeto 3</Text>
               <Text style={styles.blocksProjectsSubTittle}>ICT responsavel</Text>
-              <Text style={styles.blocksProjectsTags}>keywords, blah blah</Text>
+              <Text style={styles.blocksProjectsTags}>keywords</Text>
               <TouchableOpacity style={styles.blocksProjectsButton}>
                 <Icon name='keyboard-arrow-right' size={45} color={"white"} />
               </TouchableOpacity>
@@ -89,7 +95,7 @@ const HomePage = ({ navigation }) => {
             <View style={styles.blocksProjects}>
               <Text style={styles.blocksProjectsTittle}>Projeto 4</Text>
               <Text style={styles.blocksProjectsSubTittle}>ICT responsavel</Text>
-              <Text style={styles.blocksProjectsTags}>keywords, blah blah</Text>
+              <Text style={styles.blocksProjectsTags}>keywords</Text>
               <TouchableOpacity style={styles.blocksProjectsButton}>
                 <Icon name='keyboard-arrow-right' size={45} color={"white"} />
               </TouchableOpacity>
@@ -99,7 +105,7 @@ const HomePage = ({ navigation }) => {
 
         <View style={styles.container}>
           <Image source={require('./assets/chapeu-de-graduacao.png')} style={styles.imageCategories} />
-          <Text style={styles.textTittle}>Categorias</Text>
+          <Text style={styles.textTittle}>Departamentos</Text>
         </View>
 
         <View style={styles.containerFlexBox}>
@@ -231,6 +237,7 @@ export default function App() {
         <Stack.Screen name="ProjectPage" component={ProjectPage}/>
         <Stack.Screen name="CreateAccountPage" component={CreateAccountPage}/>
         <Stack.Screen name="RegisterProjectPage" component={RegisterProject}/>
+        <Stack.Screen name="RegisterDemanda" component={RegisterDemanda}/>
         <Stack.Screen name="LoginPage" component={LoginPage}/>
         <Stack.Screen name="PerfilPage" component={PerfilPage}/>
       </Stack.Navigator>

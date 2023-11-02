@@ -1,21 +1,23 @@
+import PerfilDemandasICT from './PerfilProjetosICT';
+
 import { StyleSheet, TouchableOpacity, View, Text, ScrollView, Image, FlatList } from 'react-native';
 import { HStack } from '@react-native-material/core';
 import { useState } from 'react';
 
 const PerfilPage = ({ navigation }) => {
 
-    const [tipoConta, setTipoConta] = useState("ICT");
+    const [tipoConta, setTipoConta] = useState("Empresarial");
 
     return(
         <>
             <ScrollView>
                 <View style={styles.containerInfoUser}>
                     <Text style={styles.topicInfoUser}>Nome completo</Text>
-                    <Text style={styles.subjectInfoUser}>sdfghsdgihuiohasdf</Text>
+                    <Text style={styles.subjectInfoUser}>Raul Prado</Text>
                     <Text style={styles.topicInfoUser}>Email</Text>
-                    <Text style={styles.subjectInfoUser}>sdfghsdgihuiohasdf</Text>
+                    <Text style={styles.subjectInfoUser}>raul.prado@gmail.com</Text>
                     <Text style={styles.topicInfoUser}>Senha</Text>
-                    <Text style={styles.subjectInfoUser}>sdfghsdgihuiohasdf</Text>
+                    <Text style={styles.subjectInfoUser}>ewd!BG680~|#</Text>
 
                     {tipoConta == "ICT" && (
                         <>
@@ -37,14 +39,22 @@ const PerfilPage = ({ navigation }) => {
                     {tipoConta == "Empresarial" && (
                         <>
                             <Text style={styles.topicInfoUser}>Departamento</Text>
-                            <Text style={styles.subjectInfoUser}>sdfghsdgihuiohasdf</Text>
+                            <Text style={styles.subjectInfoUser}>Lorem ipsum dolor sit amet</Text>
                             <Text style={styles.topicInfoUser}>Área de atuação</Text>
-                            <Text style={styles.subjectInfoUser}>asgfasgagasyigfoiasyftguiasyf</Text>
-                            <TouchableOpacity style={styles.buttonEdit}>
-                            <Text style={styles.buttonEditText}> 
-                                Editar informações
-                            </Text>
-                        </TouchableOpacity>
+                            <Text style={styles.subjectInfoUser}>Lorem ipsum dolor sit amet</Text>
+                            <>
+                            <HStack m={4} spacing={10}>
+                                <TouchableOpacity style={styles.buttonEdit}>
+                                    <Text style={styles.buttonEditText}>
+                                        Editar informações
+                                    </Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.buttonEdit}>
+                                    <Text style={styles.buttonEditText}>
+                                        Checar demandas
+                                    </Text>
+                                </TouchableOpacity>
+                            </HStack></>
                         </>
                     )}
 

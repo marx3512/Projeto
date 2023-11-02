@@ -7,17 +7,17 @@ const ProjectPage = ({ navigation }) => {
         <>
         <ScrollView>
             <View style={styles.containerTitleProjeto}>
-                <Text style={styles.titleProject}>Título da demanda</Text>
+                <Text style={styles.titleProject}>Nome do projeto</Text>
             </View>
             <View style={styles.containerInfoProject}>
-                <Text style={styles.subjectInfoProject}>Informações sobre a demanda</Text>
-                <Text style={styles.topicInfoProject}>Departamento</Text>
-                <Text style={styles.subjectInfoProject}>placerat sed purus eget pharetra.</Text>
-                <Text style={styles.topicInfoProject}>Área de atuação</Text>
-                <Text style={styles.subjectInfoProject}>placerat sed purus eget pharetra.</Text>
-                <Text style={styles.topicInfoProject}>Resumo da demanda</Text>
-                <Text style={styles.subjectInfoProject}>placerat sed purus eget pharetra.</Text>
-                <Text style={styles.subjectInfoProject}>Responsavel pela demanda</Text>
+                <Text style={styles.subjectInfoProject}>Informações sobre o projeto</Text>
+                <Text style={styles.topicInfoProject}>Objetivo do projeto</Text>
+                <Text style={styles.subjectInfoProject}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Ut non diam et lacus egestas laoreet. Suspendisse ullamcorper euismod tempor.</Text>
+                <Text style={styles.topicInfoProject}>Resumo do projeto</Text>
+                <Text style={styles.subjectInfoProject}>Lorem ipsum dolor sit amet, consectetur adipiscing elit</Text>
+                <Text style={styles.topicInfoProject}>Area de Conhecimento</Text>
+                <Text style={styles.subjectInfoProject}>placerat sed purus eget pharetra. Maecenas venenatis ex vitae lectus pulvinar</Text>
+                <Text style={styles.subjectInfoProject}>Responsavel pelo projeto</Text>
                 <Text style={styles.topicInfoProject}>Nome</Text>
                 <Text style={styles.subjectInfoProject}>Raul Prado</Text>
                 <Text style={styles.topicInfoProject}>Email</Text>
